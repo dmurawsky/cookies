@@ -27,6 +27,7 @@ build/Release
 node_modules
 
 #dist folder
+dist-server
 dist
 
 # IDEA/Webstorm project files
