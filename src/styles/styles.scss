@@ -1,0 +1,221 @@
+/* Variables */
+$vin-blue: #5bb7db;
+$vin-green: #60b044;
+$vin-red: #ff0000;
+
+/* Styles */
+html{height: 100%;}
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 300;
+  height: 100%;
+  min-height: 100%;
+}
+a, a:link, a:active, a:visited, a:hover{text-decoration: none;}
+div#app{
+  min-height: 100%;
+  background: #fff;
+}
+.socialIcons{
+  font-size: 36px;
+  margin-right: 10px;
+}
+div#subfooter{
+  border-top: solid 1px #ddd;
+  padding:20px;
+  margin-top: 150px;
+}
+a, a:active, a:visited, a:link, a:hover, a:focus{text-decoration: none!important;}
+.subfooterLink.category{
+  font-size: 14px;
+  text-indent: 15px;
+}
+.subfooterLink a{
+  color:#444!important;
+  font-size: 16px;
+}
+div#footer{
+  width:100%;
+  height: 40px;
+  color:#777;
+  text-align: center;
+  padding:13px;
+}
+.categoryLink{
+  margin:20px;
+  line-height: 40px;
+}
+#navHeader{
+  height:70px;
+  top:33px;
+}
+#content{
+  position: relative;
+  top:150px;
+  padding-bottom:150px;
+}
+.navbar-nav > li > a {
+  line-height: 38px!important;
+  font-size:16px;
+}
+#companyInfoHeader{
+  width:100%;
+  background-color: #333;
+  color:#ddd;
+  text-align: right;
+  padding:8px 50px 8px 8px;
+  font-size:12px;
+  position: fixed;
+  z-index: 15;
+  top:0px;
+}
+#apptBar{
+  position: fixed;
+  top:103px;
+  width:100%;
+  color: #333;
+  background-color:#f8b668;
+  font-size:16px;
+  text-align: center;
+  padding:8px 50px 8px 8px;
+  z-index: 15;
+}
+#companyInfoHeader a{
+  color:#fff;
+}
+.qtyBg{
+  position: absolute;
+  bottom:0px;
+  height:42px;
+  width:100%;
+  background-color:#286baa;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin:0 -10px;
+}
+.qtyBtns{
+  color: #eee;
+  position: relative;
+}
+.itemNotesBtn{
+  height:40px;
+  position: absolute;
+  bottom: -40px;
+  width: 100%;
+  color: #333;
+  background:#dbeeff;
+  border:solid 1px #ccc;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding:10px;
+  text-align: center;
+}
+.myStuffItem{
+  position: relative;
+  z-index: 1;
+  margin-bottom:50px!important;
+}
+.itemNotesBtn.open{
+  display:none;
+}
+.itemNotes{
+  position: absolute;
+  display:none;
+  border-radius: 15px;
+  background: rgba(193, 222, 249, 0.65);
+  padding:10px;
+  top: 20px;
+  width: 80%;
+  left: 10%;
+  z-index: 2;
+}
+.itemNotes.open{
+  display:block;
+  top: 70px;
+}
+#pricingTable td{
+  text-align: center;
+  width:33%;
+  font-size:22px;
+}
+#homeTopRow{
+  margin-top:60px;
+  margin-bottom:60px;
+  min-height:400px;
+  background: url("https://s3-us-west-2.amazonaws.com/stowedge/topBg.png") no-repeat center center;
+  background-size:contain;
+}
+.homeTopText{
+  text-align: center;
+  font-size:36px;
+  line-height: 50px;
+}
+#howItWorks {
+  background: url("https://s3-us-west-2.amazonaws.com/stowedge/bg.svg") #F6F6F6;
+  background-size: cover;
+  min-height: 624px;
+  padding-top: 7em;
+  // min-width: 1000px;
+  // margin-left: -69px;
+  // margin-right: -68px;
+}
+#howItWorksText {
+  text-align: center;
+  font-size:36px;
+  margin-bottom:50px;
+}
+.navbar-brand > img {
+  width: 150px;
+}
+.appt-item{
+  font-size:22px;
+}
+td {
+	padding: 12px;
+}
+
+h2 {
+	color: $vin-blue;
+}
+*:focus {
+    outline: none!important;
+}
+span.seBlue{
+  color:#286baa;
+}
+#addStuffTitle{
+  font-size: 40px;
+  text-align: center;
+}
+#addStuffSubtitle{
+  font-size: 28px;
+  text-align: center;
+}
+.product{
+  border: solid 1px #d2d2d2;
+  border-radius: 6px;
+  padding:10px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.productPrice{
+  color:#286baa;
+  font-size: 18px;
+}
+.productTitle{
+  color:#444;
+  font-size: 20px;
+  font-weight: normal;
+}
+.hideIfCurrentRoute.active{
+  display:none;
+}
+
+.savings { color: $vin-green; }
+.loss { color: $vin-red; }
+input.small { width: 46px; }
+td.fuel-savings-label { width: 175px; }
