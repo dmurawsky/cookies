@@ -4,7 +4,6 @@ import { Grid, Row } from 'react-bootstrap';
 import Stuff from './Stuff';
 import {bindActionCreators} from 'redux';
 import * as actions from './myStuffActions';
-import Equalizer from 'react-equalizer';
 import EditStuffModal from './EditStuffModal';
 
 class MyStuffPage extends React.Component{
@@ -14,9 +13,11 @@ class MyStuffPage extends React.Component{
     this.requestPickup = this.requestPickup.bind(this);
     this.viewAppointment = this.viewAppointment.bind(this);
     this.requestDelivery = this.requestDelivery.bind(this);
+    window.Intercom('trackEvent', 'my-stuff-page');
   }
 
   showEditStuffModal(e){
+    window.Intercom('trackEvent', 'edit-stuff-modal');
     const arr = e.target.id.split('_');
     const item = this.props.myStuff[arr[0]].find(item=>item._id==arr[1]);
     this.props.actions.showEditStuffModal(item);
@@ -41,71 +42,63 @@ class MyStuffPage extends React.Component{
         {this.props.myStuff.customer.length>0 && <div className="well">
           <h3>With You</h3>
           <Row>
-            <Equalizer>
-              {this.props.myStuff.customer.length>0 && this.props.myStuff.customer.map(item=>{
-                return (
-                  <Stuff key={item._id}
-                    item={item}
-                    statusIndex="customer"
-                    btnText={{request:"Request Pickup",cancel:"Cancel Pickup"}}
-                    onClick={this.requestPickup}
-                    btnBool={!item.pickup}
-                    showEditStuffModal={this.showEditStuffModal}  />
-                );
-              })}
-            </Equalizer>
+            {this.props.myStuff.customer.length>0 && this.props.myStuff.customer.map(item=>{
+              return (
+                <Stuff key={item._id}
+                  item={item}
+                  statusIndex="customer"
+                  btnText={{request:"Request Pickup",cancel:"Cancel Pickup"}}
+                  onClick={this.requestPickup}
+                  btnBool={!item.pickup}
+                  showEditStuffModal={this.showEditStuffModal}  />
+              );
+            })}
           </Row>
         </div>}
         {this.props.myStuff.pickup.length>0 && <div className="well">
           <h3>Pickup Scheduled</h3>
           <Row>
-            <Equalizer>
-              {this.props.myStuff.pickup.length>0 && this.props.myStuff.pickup.map(item=>{
-                return (
-                  <Stuff key={item._id}
-                    item={item}
-                    statusIndex="pickup"
-                    btnText={{cancel:"View Appointment"}}
-                    onClick={this.viewAppointment}
-                    showEditStuffModal={this.showEditStuffModal}  />
-                );
-              })}
-            </Equalizer>
+            {this.props.myStuff.pickup.length>0 && this.props.myStuff.pickup.map(item=>{
+              return (
+                <Stuff key={item._id}
+                  item={item}
+                  statusIndex="pickup"
+                  btnText={{cancel:"View Appointment"}}
+                  onClick={this.viewAppointment}
+                  showEditStuffModal={this.showEditStuffModal}  />
+              );
+            })}
           </Row>
         </div>}
         {this.props.myStuff.stored.length>0 && <div className="well">
           <h3>Stored</h3>
           <Row>
-            <Equalizer>
-              {this.props.myStuff.stored.length>0 && this.props.myStuff.stored.map(item=>{
-                return (
-                  <Stuff key={item._id}
-                    item={item}
-                    statusIndex="stored"
-                    btnText={{request:"Request Delivery",cancel:"Cancel Delivery"}}
-                    onClick={this.requestDelivery}
-                    btnBool={!item.delivery}
-                    showEditStuffModal={this.showEditStuffModal}  />
-                );
-              })}
-            </Equalizer>
+            {this.props.myStuff.stored.length>0 && this.props.myStuff.stored.map(item=>{
+              return (
+                <Stuff key={item._id}
+                  item={item}
+                  statusIndex="stored"
+                  btnText={{request:"Request Delivery",cancel:"Cancel Delivery"}}
+                  onClick={this.requestDelivery}
+                  btnBool={!item.delivery}
+                  showEditStuffModal={this.showEditStuffModal}  />
+              );
+            })}
           </Row>
         </div>}
         {this.props.myStuff.delivery.length>0 && <div className="well">
           <h3>Delivery Scheduled</h3>
           <Row>
-            <Equalizer>
-              {this.props.myStuff.delivery.length>0 && this.props.myStuff.delivery.map(item=>{
-                return (
-                  <Stuff key={item._id}
-                    item={item}
-                    statusIndex="delivery"
-                    btnText={{cancel:"View Appointment"}}
-                    onClick={this.viewAppointment}
-                    showEditStuffModal={this.showEditStuffModal}  />
-                );
-              })}
-            </Equalizer>
+            {this.props.myStuff.delivery.length>0 && this.props.myStuff.delivery.map(item=>{
+              return (
+                <Stuff key={item._id}
+                  item={item}
+                  statusIndex="delivery"
+                  btnText={{cancel:"View Appointment"}}
+                  onClick={this.viewAppointment}
+                  showEditStuffModal={this.showEditStuffModal}  />
+              );
+            })}
           </Row>
         </div>}
         <EditStuffModal />

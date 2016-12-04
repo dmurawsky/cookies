@@ -9,6 +9,7 @@ class FaqPage extends React.Component{
   constructor(props, context){
     super(props, context);
     this.props.actions.getFaqs();
+    window.Intercom('trackEvent', 'faq-page');
   }
 
   render(){

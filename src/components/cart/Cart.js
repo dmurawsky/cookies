@@ -37,14 +37,14 @@ class Cart extends React.Component {
               return (
                 <Row key={product._id} style={{marginBottom:"8px"}}>
                   <Col xs={4}>
-                    <img style={{maxWidth:"100%",width:"60px",float:"left"}} src={this.props.settings.photoRoot+product.photoUrl} />
+                    <img style={{maxWidth:"100%",width:"60px",float:"left"}} src={this.props.settings.prodPhotoRoot+product.photoUrl} />
                     <p style={{marginTop:"10px"}}>{product.title}</p>
                   </Col>
                   <Col xs={4} className="text-center">
                     <p style={{marginTop:"6px"}}>
-                      <Glyphicon id={product._id} onClick={this.decrementQty} glyph="minus" />
+                      <Glyphicon id={product._id} onClick={this.decrementQty} glyph="minus" style={{cursor:"pointer"}} />
                       <span style={{margin:"15px",fontSize:"16px"}}>{product.qty}</span>
-                      <Glyphicon id={product._id} onClick={this.incrementQty} glyph="plus" />
+                      <Glyphicon id={product._id} onClick={this.incrementQty} glyph="plus" style={{cursor:"pointer"}} />
                     </p>
                   </Col>
                   <Col xs={4}>

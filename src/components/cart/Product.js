@@ -36,13 +36,13 @@ class Product extends React.Component {
             <div>{this.getMinimum()}</div>
           </div>
           <div>
-            <img style={{maxWidth:"100%",width:"100%"}} src={this.props.photoRoot+details.photoUrl} />
+            <img style={{maxWidth:"100%",width:"100%"}} src={this.props.prodPhotoRoot+details.photoUrl} />
           </div>
           {this.props.decrementQty && this.props.incrementQty && <div className="qtyBg"/>}
           {this.props.decrementQty && this.props.incrementQty && <div className="qtyBtns text-center">
-            <Glyphicon onClick={this.decrementQty} glyph="minus" />
+            <Glyphicon onClick={this.decrementQty} glyph="minus" style={{cursor:"pointer"}} />
             <span style={{margin:"15px",fontSize:"18px"}}>{details.qty}</span>
-            <Glyphicon onClick={this.incrementQty} glyph="plus" />
+            <Glyphicon onClick={this.incrementQty} glyph="plus" style={{cursor:"pointer"}} />
           </div>}
         </div>
       </Col>
@@ -51,7 +51,7 @@ class Product extends React.Component {
 }
 
 Product.propTypes = {
-  photoRoot: PropTypes.string,
+  prodPhotoRoot: PropTypes.string,
   details: PropTypes.object.isRequired,
   incrementQty: PropTypes.func,
   decrementQty: PropTypes.func

@@ -8,7 +8,7 @@ import * as actions from './userActions';
 import moment from 'moment';
 
 let date = moment();
-let minDate = moment();
+let minDate = moment(); 
 let maxDate = moment().add(60,'d');
 
 class AppointmentPage extends React.Component{
@@ -19,6 +19,7 @@ class AppointmentPage extends React.Component{
     this.updateDate = this.updateDate.bind(this);
     this.updateTime = this.updateTime.bind(this);
     this.printTimeRange = this.printTimeRange.bind(this);
+    window.Intercom('trackEvent', 'appointment-page');
     date = moment(this.props.user.apptDate, 'YYYY-MM-DD');
   }
 

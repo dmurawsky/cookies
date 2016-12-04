@@ -26,3 +26,16 @@ export function getFaqcats() {
     });
   };
 }
+
+export function getVerbiage() {
+  return function(dispatch, getState, api) {
+    return fetch(api+'verbiage')
+    .then(response => response.json())
+    .then(json => {
+      dispatch({
+        type: types.LOAD_VERBIAGE_SUCCESS,
+        verbiage: json.data
+      });
+    });
+  };
+}

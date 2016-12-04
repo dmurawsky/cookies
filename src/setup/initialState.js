@@ -24,6 +24,8 @@ export default {
     delivery:[]
   },
   cart: {
+    emailThankYou:false,
+    showEmailField:false,
     showCart:false,
     pricing:[],
     products: [],
@@ -32,6 +34,7 @@ export default {
   settings:{},
   content:{
     faqs:[],
-    faqcats:[]
+    faqcats:[],
+    verbiage:{}
   }
 };

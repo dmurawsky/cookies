@@ -9,7 +9,6 @@ import AccountPage from './components/user/AccountPage';
 import SignInPage from './components/user/SignInPage';
 import SignupPage from './components/user/SignupPage';
 import AppointmentPage from './components/user/AppointmentPage';
-import ChargePage from './components/user/ChargePage';
 import FaqPage from './components/content/FaqPage';
 import StorageTermsPage from './components/content/StorageTermsPage';
 import WebsiteTermsPage from './components/content/WebsiteTermsPage';
@@ -20,6 +19,7 @@ import NotFoundPage from './components/NotFoundPage';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage}/>
+    <Route path="home" component={HomePage}/>
     <Route path="storage-terms" component={StorageTermsPage}/>
     <Route path="website-terms" component={WebsiteTermsPage}/>
     <Route path="faqs" component={FaqPage}/>
@@ -30,7 +30,6 @@ export default (
     <Route path="signup" component={SignupPage}/>
     <Route path="login" component={SignInPage}/>
     <Route path="appointment" component={AppointmentPage}/>
-    <Route path="charge" component={ChargePage}/>
     <Route path="checkout" component={CheckoutPage}/>
     <Route path="my-stuff" component={MyStuffPage}/>
     <Route path="*" component={NotFoundPage}/>

@@ -1,4 +1,4 @@
-import {UPDATE_DATE, UPDATE_TIME, UPDATE_ZIP, UPDATE_CARD_TOKEN, SHOW_SIGNIN, CLOSE_SIGNIN, SIGN_IN_FAILED, LOAD_USER, LOAD_INVOICES_SUCCESS, SIGN_IN, SIGN_OUT, USER_CREATED_SUCCESS, USER_SIGNED_IN_SUCCESS} from '../../setup/actionTypes';
+import {UPDATE_DATE, UPDATE_TIME, UPDATE_ZIP, UPDATE_EMAIL, UPDATE_CARD_TOKEN, SHOW_SIGNIN, CLOSE_SIGNIN, SIGN_IN_FAILED, LOAD_USER, LOAD_INVOICES_SUCCESS, SIGN_IN, SIGN_OUT, USER_CREATED_SUCCESS, USER_SIGNED_IN_SUCCESS} from '../../setup/actionTypes';
 import objectAssign from 'object-assign';
 import initialState from '../../setup/initialState';
 
@@ -14,6 +14,9 @@ export default function userReducer(state = initialState.user, action) {
 
     case UPDATE_ZIP:
       return objectAssign({},state,{zip:action.zip});
+
+    case UPDATE_EMAIL:
+      return objectAssign({},state,{email:action.email});
 
     case UPDATE_CARD_TOKEN:
       return objectAssign({},state,{cardToken:action.token, lastFour:action.lastFour});

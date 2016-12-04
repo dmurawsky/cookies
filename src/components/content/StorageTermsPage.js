@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from 'react-bootstrap';
 
 const StorageTermsPage = () => {
+  window.Intercom('trackEvent', 'storage-terms-page');
   return (
     <Grid>
       <h1>StowEdge Storage Terms</h1>

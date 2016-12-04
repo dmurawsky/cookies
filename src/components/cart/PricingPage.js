@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import * as actions from './cartActions';
 import Product from './Product';
 import { Grid, Row, Col } from 'react-bootstrap';
-import Equalizer from 'react-equalizer';
 
 class PricingPage extends React.Component{
   constructor(props, context){
     super(props, context);
     this.props.actions.loadPricing();
+    window.Intercom('trackEvent', 'pricing-page');
   }
 
   render(){
@@ -22,11 +22,9 @@ class PricingPage extends React.Component{
           </Col>
         </Row>
         <Row>
-          <Equalizer byRow={false}>
-            {this.props.pricing.length>0 && this.props.pricing.map(product=>{
-              return <Product key={product._id} photoRoot={this.props.settings.photoRoot} details={product} />;
-            })}
-          </Equalizer>
+          {this.props.pricing.length>0 && this.props.pricing.map(product=>{
+            return <Product key={product._id} prodPhotoRoot={this.props.settings.prodPhotoRoot} details={product} />;
+          })}
         </Row>
       </Grid>
     );

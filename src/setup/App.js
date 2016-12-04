@@ -14,12 +14,10 @@ import HeaderNav from './HeaderNav';
 const App = (props) => {
   return (
     <div>
-      <div id="companyInfoHeader">
-        Call Us: <a href="tel:+19415550000">(941) 555-0000</a> or <a href="mailto:hello@stowedge.com">hello@stowedge.com</a>
-      </div>
       <HeaderNav
         showSignIn={props.actions.userActions.showSignIn}
         signOut={props.actions.userActions.signOut}
+        verbiage={props.verbiage}
         userSignedIn={props.userSignedIn}
         openCart={props.actions.cartActions.open}
         cartTotals={props.cartTotals}
@@ -82,6 +80,7 @@ App.propTypes = {
   settings: PropTypes.object.isRequired,
   cartTotals: PropTypes.object.isRequired,
   faqcats: PropTypes.array.isRequired,
+  verbiage: PropTypes.object.isRequired,
   userSignedIn: PropTypes.bool,
   children: PropTypes.element
 };
@@ -94,6 +93,7 @@ export default connect(
     user:s.user,
     myStuff:s.myStuff,
     faqcats:s.content.faqcats,
+    verbiage:s.content.verbiage,
     cartTotals:getCartTotals(s)
   };}, // in lieu of mapStateToProps
   d=>{return {actions:{userActions:bindActionCreators(userActions,d),cartActions:bindActionCreators(cartActions,d)}};} // in lieu of mapDispatchToProps

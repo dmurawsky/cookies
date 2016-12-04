@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from 'react-bootstrap';
 
 const WebsiteTermsPage = () => {
+  window.Intercom('trackEvent', 'website-terms-page');
   return (
     <Grid>
       <h1>StowEdge Website Terms</h1>

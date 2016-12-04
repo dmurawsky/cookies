@@ -1,4 +1,4 @@
-import {SIGN_OUT, EMPTY_CART, OPEN_CART, CLOSE_CART, INCREMENT_QTY, DECREMENT_QTY, LOAD_PRODUCTS, LOAD_PRICING, UPDATE_DELIVERY_PRICE} from '../../setup/actionTypes';
+import {EMAIL_THANKYOU, SHOW_EMAIL_FIELD, SIGN_OUT, EMPTY_CART, OPEN_CART, CLOSE_CART, INCREMENT_QTY, DECREMENT_QTY, LOAD_PRODUCTS, LOAD_PRICING, UPDATE_DELIVERY_PRICE} from '../../setup/actionTypes';
 // import {findWithAttr} from '../../utils/objectHelper';
 import objectAssign from 'object-assign';
 import initialState from '../../setup/initialState';
@@ -7,6 +7,13 @@ import {updateUser} from '../../utils/intercom';
 export default function cartReducer(state = initialState.cart, action) {
 
   switch (action.type) {
+
+    case EMAIL_THANKYOU:
+      return objectAssign({}, state, {emailThankYou:true});
+
+    case SHOW_EMAIL_FIELD:
+      return objectAssign({}, state, {showEmailField:true});
+
     case EMPTY_CART:
       return objectAssign({}, state, {products:state.products.map(prod=>{return objectAssign({},prod,{qty:0, subtotal:0});})});
 

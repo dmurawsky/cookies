@@ -10,6 +10,7 @@ class CheckoutPage extends React.Component{
   constructor(props, context){
     super(props, context);
     this.checkout = this.checkout.bind(this);
+    window.Intercom('trackEvent', 'checkout-page');
   }
 
   checkout(){

@@ -16,6 +16,7 @@ class SignupPage extends React.Component{
     this.afterStripe = this.afterStripe.bind(this);
     this.showSignIn = this.showSignIn.bind(this);
     this.componentWillUpdate = this.componentWillUpdate.bind(this);
+    window.Intercom('trackEvent', 'signup-page');
   }
 
   componentWillUpdate(nextProps){
@@ -73,7 +74,7 @@ class SignupPage extends React.Component{
         <Col sm={4}/>
         <Col sm={4}>
           <h2>Create Your Account</h2><hr/>
-          <p>Already signed up? <a onClick={this.showSignIn}>Login</a></p>
+          <p>Already signed up? <a onClick={this.showSignIn} href="javascript:void(0)">Login</a></p>
           <Form onSubmit={this.saveToken} style={{marginBottom:"45px"}}>
             <FieldGroup
               required

@@ -37,7 +37,7 @@ class EditStuffModal extends React.Component {
     return this.props.details.photos.map((photoUrl, i)=>{
       return (
         <div key={"photo_"+i} style={{padding:"20px"}}>
-          <img src={this.props.userPhotoRoot+photoUrl} style={{maxWidth:"100%"}} />
+          <img src={this.props.prodPhotoRoot+photoUrl} style={{maxWidth:"100%"}} />
         </div>
       );
     });
@@ -87,13 +87,13 @@ class EditStuffModal extends React.Component {
 EditStuffModal.propTypes = {
   actions: PropTypes.object.isRequired,
   details: PropTypes.object.isRequired,
-  userPhotoRoot: PropTypes.string
+  prodPhotoRoot: PropTypes.string
 };
 
 export default connect(
   s=>{return {
     details:s.myStuff.editStuffModal,
-    userPhotoRoot:s.settings.userPhotoRoot
+    prodPhotoRoot:s.settings.prodPhotoRoot || 'https://s3-us-west-2.amazonaws.com/stowedge/prod/large'
   };},
   d=>{return {actions:bindActionCreators(actions,d)};}
 )(EditStuffModal);

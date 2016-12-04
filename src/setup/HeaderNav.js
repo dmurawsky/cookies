@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import { IndexLink } from 'react-router';
-import { Navbar, NavItem, Nav, Badge } from 'react-bootstrap';
+import { IndexLink, Link } from 'react-router';
+import { Navbar, NavItem, Nav, Badge, Glyphicon } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class HeaderNav extends React.Component {
@@ -25,6 +25,7 @@ class HeaderNav extends React.Component {
 
   getCart() {
     if(this.props.cartTotals.qty>0){
+      window.Intercom('trackEvent', 'cart-qty', {qty:this.props.cartTotals.qty});
       return (
         <Nav pullRight>
           <NavItem onClick={this.openCart}><Badge>{this.props.cartTotals.qty}</Badge> Cart</NavItem>
@@ -37,23 +38,22 @@ class HeaderNav extends React.Component {
     if(this.props.userSignedIn){
       return (
         <Nav pullRight>
-          <LinkContainer to="/my-stuff"><NavItem>My Stuff</NavItem></LinkContainer>
-          <LinkContainer to="/account"><NavItem>Account</NavItem></LinkContainer>
-          <NavItem onClick={this.signOut}>Sign Out</NavItem>
+          <LinkContainer key="my-stuff" to="/my-stuff"><NavItem>My Stuff</NavItem></LinkContainer>
+          <LinkContainer key="account" to="/account"><NavItem>Account</NavItem></LinkContainer>
+          <NavItem key="sign-out" onClick={this.signOut}>Sign Out</NavItem>
         </Nav>
       );
     }else{
-      return (
-        <Nav pullRight>
-          <NavItem onClick={this.showSignIn}>Sign In</NavItem>
-        </Nav>
-      );
+      return [
+        <Link key="sign-up" to="/signup" className="btn btn-primary navbar-btn pull-right">Sign Up</Link>,
+        <button key="sign-in" type="button" className="btn btn-info navbar-btn pull-right" onClick={this.showSignIn}>Sign In</button>
+      ];
     }
   }
 
   render() {
     return (
-      <Navbar id="navHeader" fixedTop>
+      <Navbar fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
             <IndexLink to="/"><img style={{display:"inline"}} src="https://s3-us-west-2.amazonaws.com/stowedge/logo-small.png"/> <small><sup>beta</sup></small></IndexLink>
@@ -61,13 +61,17 @@ class HeaderNav extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
+          {this.getMenu()}
+          <Nav pullRight>
+            {this.getCart()}
+          </Nav>
+          <p className="navbar-text pull-right" id="se-navbar-phone"><Glyphicon glyph="earphone" /> {this.props.verbiage.company_phone || 'company_phone'}</p>
+          <Nav pullRight>
+            <LinkContainer to="/home"><NavItem><Glyphicon glyph="home" />&nbsp;&nbsp;&nbsp;How It Works</NavItem></LinkContainer>
             <LinkContainer to="/add-stuff"><NavItem>Store Stuff</NavItem></LinkContainer>
             <LinkContainer to="/pricing"><NavItem>Pricing</NavItem></LinkContainer>
             <LinkContainer to="/faqs"><NavItem>FAQs</NavItem></LinkContainer>
           </Nav>
-          {this.getCart()}
-          {this.getMenu()}
         </Navbar.Collapse>
       </Navbar>
     );
@@ -76,6 +80,7 @@ class HeaderNav extends React.Component {
 
 HeaderNav.propTypes = {
   signOut: PropTypes.func.isRequired,
+  verbiage: PropTypes.object.isRequired,
   showSignIn: PropTypes.func.isRequired,
   openCart: PropTypes.func.isRequired,
   cartTotals: PropTypes.object.isRequired,

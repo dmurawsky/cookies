@@ -3,15 +3,16 @@ import objectAssign from 'object-assign';
 import 'whatwg-fetch';
 
 export function open() {
-  return {
-    type: types.OPEN_CART
-  };
+  window.Intercom('trackEvent', 'open-cart');
+  return { type: types.OPEN_CART };
 }
 
 export function close() {
-  return {
-    type: types.CLOSE_CART
-  };
+  return { type: types.CLOSE_CART };
+}
+
+export function emailThankYou() {
+  return { type: types.EMAIL_THANKYOU };
 }
 
 export function updateDeliveryPrice(level) {
@@ -23,6 +24,7 @@ export function updateDeliveryPrice(level) {
 
 export function loadProducts(zip) {
   return function(dispatch, getState, api) {
+    if (zip.length>0) window.Intercom('trackEvent', 'checked-zip', {zip:zip});
     return fetch(api+'getProducts/'+(zip&&zip.length>0?zip:'none'))
       .then(response => response.json())
       .then(json => {
@@ -30,7 +32,6 @@ export function loadProducts(zip) {
           dispatch({
             type: types.LOAD_PRODUCTS,
             products: json.data.map(product=>{
-              // localStorage.setItem(product._id, "");
               const cached = localStorage.getItem(product._id);
               if (cached && cached.length>0){
                 return objectAssign({}, product, JSON.parse(cached));
@@ -39,6 +40,8 @@ export function loadProducts(zip) {
               }
             })
           });
+        }else if(zip.length>0){
+          dispatch({type:types.SHOW_EMAIL_FIELD});
         }
       }
     );

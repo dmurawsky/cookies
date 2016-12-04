@@ -24,7 +24,14 @@ export function updateTime(time) {
 export function updateZip(zip) {
   return {
     type: types.UPDATE_ZIP,
-    zip: zip
+    zip
+  };
+}
+
+export function updateEmail(email) {
+  return {
+    type: types.UPDATE_EMAIL,
+    email
   };
 }
 
@@ -32,7 +39,7 @@ export function createAppt(deliveryFee) {
   return function(dispatch, getState, api) {
     const user = getState().user;
     return fetch(api+'appointment', {
-      method:"post",
+      method:"put",
       headers: { "Content-type": "application/json" },
       body:JSON.stringify({userId:user._id, date:user.apptDate, time:user.apptTime, deliveryFee})
     })
@@ -59,8 +66,7 @@ export function loadUser(noReset) {
           dispatch(loadMyStuff(cookies.se_user_id));
           dispatch(loadProducts(json.data.zip));
         }
-        window.Intercom('boot', {
-          app_id: 'sz3eop59',
+        window.Intercom('update', {
           email: json.data.email,
           phone: json.data.phone,
           name: json.data.firstName+" "+json.data.lastName,

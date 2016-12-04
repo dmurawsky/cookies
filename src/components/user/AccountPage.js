@@ -19,6 +19,7 @@ class AccountPage extends React.Component{
     this.updatePassword = this.updatePassword.bind(this);
     this.updateCustomer = this.updateCustomer.bind(this);
     this.props.actions.loadInvoices(this.props.user.stripeCustomerId);
+    window.Intercom('trackEvent', 'account-page');
   }
 
   updateAccount(e){

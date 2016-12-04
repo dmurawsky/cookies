@@ -7,7 +7,8 @@ const Stuff = (props) => {
     <Col sm={3} style={{marginBottom:"20px"}}>
       <div className="myStuffItem panel panel-default">
         <div className="panel-body">
-          <img style={{width:'100px',float:'left'}} src={"https://s3-us-west-2.amazonaws.com/stowedge/prod/large/"+props.item.product.photoUrl}/>
+          {props.item.mainPhoto && <a href={props.item.mainPhoto} target="_blank"><img style={{width:'100px',float:'left'}} src={props.item.mainPhoto}/></a>}
+          {!props.item.mainPhoto && <img style={{width:'100px',float:'left'}} src={props.prodPhotoRoot+props.item.product.photoUrl}/>}
           <div>
             <p>{props.item.product.title}<br/>${props.item.product.price}/mo <br/><small>{props.item.barcode}</small></p>
             <button id={props.statusIndex+"_"+props.item._id} className={"btn btn-block "+(props.btnBool?'btn-primary':'btn-default')} onClick={props.onClick}>{props.btnBool?props.btnText.request:props.btnText.cancel}</button>
@@ -27,8 +28,7 @@ Stuff.propTypes = {
   onClick: PropTypes.func.isRequired,
   showEditStuffModal: PropTypes.func.isRequired,
   statusIndex: PropTypes.string.isRequired,
-  photoRoot: PropTypes.string,
-  userPhotoRoot: PropTypes.string,
+  prodPhotoRoot: PropTypes.string,
   btnBool: PropTypes.bool
 };
 
