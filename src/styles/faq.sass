@@ -1,0 +1,56 @@
+@import "colors"
+@import "misc"
+
+$faq-border-style: solid 1px #dddcdc
+$cell-bg: #f3f3f3
+
+.faq
+  border: $faq-border-style
+  margin-bottom: 10px
+  width: 100%
+  .faq-question
+    border-bottom: $faq-border-style
+    font-weight: 500
+    height: 60px
+    background-color: $cell-bg
+    cursor: pointer
+    color: $se-base
+    .faq-question-q
+      text-align: center
+      vertical-align: middle
+      font-size: 20px
+      font-weight: 500
+      width: 50px
+      border-right: $faq-border-style
+  .faq-answer
+    height: 50px
+    .faq-answer-text
+      animation: accordionIn 0.45s normal ease-in-out both 1
+    .faq-answer-a
+      background-color: $cell-bg
+      text-align: center
+      vertical-align: middle
+      font-size: 20px
+      font-weight: 500
+      color: $se-secondary
+      border-bottom: $faq-border-style
+      border-right: $faq-border-style
+
+@keyframes accordionIn
+  0%
+    opacity: 0
+    transform: scale(0.9) rotateX(-60deg)
+    transform-origin: 50% 0
+  100%
+    opacity: 1
+    transform: scale(1)
+
+.faq-space-cell
+  position: relative
+  .faq-spacer
+    position: absolute
+    width: 1px
+    top: 0px
+    bottom: 0px
+    right: -1px
+    background-color: white

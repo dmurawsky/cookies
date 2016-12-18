@@ -1,0 +1,196 @@
+@import "colors"
+@import "misc"
+
+// Fonts
+=fonts-mixin($family, $urls, $weights, $base-url: '../fonts/')
+  $fonts: zip($urls, $weights)
+  @each $font in $fonts
+    @font-face
+      font-family: $family
+      src: url($base-url + nth($font, 1))
+      font-weight: nth($font, 2)
+
+$os-urls: 'OpenSans-Light.ttf', 'OpenSans-Regular.ttf', 'OpenSans-SemiBold.ttf', 'OpenSans-Bold.ttf'
+$os-weights: 300, 400, 500, 600
++fonts-mixin("Open Sans", $os-urls, $os-weights)
+
+$ms-urls: 'Montserrat-Light.otf', 'Montserrat-Regular.otf', 'Montserrat-SemiBold.otf', 'Montserrat-Bold.otf'
+$ms-weights: 300, 400, 500, 600
++fonts-mixin(Montserrat, $ms-urls, $ms-weights)
+
+$ss-urls: 'STAGSANS-LIGHT.OTF'
+$ss-weights: 300
++fonts-mixin(StagSans, $ms-urls, $ms-weights)
+
+h2.home-section-title
+  margin: 80px auto 30px
+  font-size: 30px
+  text-align: center
+  color: $se-base
+
+.btn-info
+  +flat-btn()
+
+.btn-primary
+  +flat-btn()
+
+.btn-default
+  +flat-btn()
+  border: solid 2px $se-base
+  font-weight: 400
+  font-family: "Montserrat", sans-serif
+  font-size: 16px
+  padding: 20px
+  width: 100%
+
+.cta-btn
+  width: 300px
+  margin: 40px auto
+  cursor: pointer
+  .btn.active
+    display: none
+  .btn-default
+    border: solid 2px $se-base
+    font-weight: 400
+    font-family: "Montserrat", sans-serif
+    font-size: 16px
+    padding: 20px
+    width: 100%
+
+.se-base-text
+  color: $se-base
+  font-weight: bold
+
+.se-secondary-text
+  color: $se-secondary
+  font-weight: bold
+
+html
+  height: 100%
+
+body
+  height: 100%
+  min-height: 100%
+
+a, a:active, a:visited, a:link, a:hover, a:focus
+  text-decoration: none!important
+
+div#app
+  min-height: 100%
+  background: #fff
+  padding-top: 85px
+
+#phoneInput
+  width: 300px
+  margin: 20px auto
+  input
+    margin: 20px auto
+  button
+    color: black
+
+#se-navbar-phone
+  line-height: 38px
+  color: $se-secondary
+
+.secondary-link
+  color: $se-secondary
+  &:hover
+    color: darken($se-secondary, 10%)
+
+div#footer
+  width: 100%
+  img
+    width: 100%
+    max-width: 100%
+
+.categoryLink
+  margin: 20px
+  line-height: 40px
+
+.navbar-btn
+  margin: 24px 7px 0
+
+.navbar-nav > li > a
+  line-height: 38px
+  font-size: 16px
+
+.qtyBg
+  position: absolute
+  bottom: 0px
+  height: 42px
+  width: 100%
+  background-color: #000000
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+  margin: 0 -10px
+
+.qtyBtns
+  color: #eee
+  position: relative
+
+.itemNotesBtn
+  height: 40px
+  position: absolute
+  bottom: -40px
+  width: 100%
+  color: #333
+  background: #dbeeff
+  border: solid 1px #ccc
+  border-bottom-right-radius: 5px
+  border-bottom-left-radius: 5px
+  padding: 10px
+  text-align: center
+
+.myStuffItem
+  position: relative
+  z-index: 1
+  margin-bottom: 50px!important
+
+.itemNotesBtn.open
+  display: none
+
+.itemNotes
+  position: absolute
+  display: none
+  border-radius: 15px
+  background: rgba(193, 222, 249, 0.65)
+  padding: 10px
+  top: 20px
+  width: 80%
+  left: 10%
+  z-index: 2
+
+.itemNotes.open
+  display: block
+  top: 70px
+
+#pricingTable td
+  text-align: center
+  width: 33%
+  font-size: 22px
+
+.navbar-brand > img
+  width: 245px
+
+.appt-item
+  font-size: 22px
+
+td
+	padding: 12px
+
+*:focus
+  outline: none!important
+
+span.seBlue
+  color: $se-base
+
+#addStuffTitle
+  font-size: 40px
+  text-align: center
+
+#addStuffSubtitle
+  font-size: 28px
+  text-align: center
+
+.hideIfCurrentRoute.active
+  display: none

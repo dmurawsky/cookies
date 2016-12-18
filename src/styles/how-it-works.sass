@@ -1,0 +1,61 @@
+@import "colors"
+
+.how-it-works
+  p
+    font-size: 16px
+    font-family: "Montserrat", sans-serif
+    font-weight: 500
+    color: $se-grey
+
+=hiw-col-width( $cols, $diff: 0, $add: true)
+  width: if($add, percentage((1 / $cols) + $diff), percentage((1 / $cols) - $diff))
+
+=hiw-col()
+  text-align: center
+  display: inline-block
+  float: left
+
+$img-col-diff: 0.06
+$arrow-col-diff: 0.07
+
+.hiw-img-col
+  +hiw-col-width(5, $img-col-diff)
+  +hiw-col()
+
+.hiw-arrow-col
+  +hiw-col-width(5, $arrow-col-diff, false)
+  +hiw-col()
+
+.hiw-img
+  max-width: 100%
+  width: 200px
+  margin: 0 auto
+
+=transform( $flipY, $val: 90deg)
+  @if $flipY == false
+    -webkit-transform: rotate($val)
+    -moz-transform: rotate($val)
+    -ms-transform: rotate($val)
+    -o-transform: rotate($val)
+    transform: rotate($val)
+  @else
+    -webkit-transform: rotate($val) scaleY(-1)
+    -moz-transform: rotate($val) scaleY(-1)
+    -ms-transform: rotate($val)
+    transform: rotate($val) scaleY(-1)
+    filter: FlipV
+    -ms-filter: "FlipV"
+
+=hiw-arrow-styles( $top, $rotation: 90deg, $opacity: 0.4, $flipY: false )
+  opacity: $opacity
+  position: relative
+  top: $top
+  +transform( $flipY, $rotation)
+  img
+    width: 60%
+
+.top-down-arrow
+  +hiw-arrow-styles(40px, -125deg)
+
+.bottom-up-arrow
+  +hiw-arrow-styles(80px, 130deg, $flipY: true)

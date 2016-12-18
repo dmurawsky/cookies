@@ -1,4 +1,6 @@
 /* eslint-disable import/default */
+/* global firebase */
+/* eslint no-undef: "error" */
 
 import React from 'react';
 import {render} from 'react-dom';
@@ -13,21 +15,30 @@ import './fonts/glyphicons-halflings-regular.ttf';
 import './fonts/glyphicons-halflings-regular.woff';
 import './fonts/glyphicons-halflings-regular.woff2';
 import './fonts/glyphicons-halflings-regular.svg';
-import '../node_modules/react-datepicker/dist/react-datepicker.css';
 import './styles/bootstrap.min.css';
 import './styles/bootstrap-theme.min.css';
-import './styles/slick.min.css';
-import './styles/styles.scss';
+import './styles/styles.sass';
+import './styles/how-it-works.sass';
+import './styles/product-list.sass';
+import './styles/home-page.sass';
+import './styles/faq.sass';
 import { syncHistoryWithStore } from 'react-router-redux';
-import {loadUser} from './components/user/userActions';
-import {getFaqcats, getVerbiage} from './components/content/contentActions';
-import {getSettings} from './components/settings/settingsActions';
+import {startWatchingUser, stopWatchingUser} from './components/user/userActions';
+import {startWatchingSettings} from './components/settings/settingsActions';
 
 const store = configureStore();
-store.dispatch(getVerbiage());
-store.dispatch(getFaqcats());
-store.dispatch(loadUser());
-store.dispatch(getSettings());
+
+store.dispatch(startWatchingSettings());
+firebase.auth().onAuthStateChanged((user) => {
+  if (user){
+    store.dispatch(startWatchingUser(user.uid));
+  }else{
+    store.dispatch(stopWatchingUser());
+  }
+});
+firebase.auth().signInAnonymously().catch(function(error) {
+  firebase.database().ref('errors').push(error);
+});
 
 const history = syncHistoryWithStore(browserHistory, store);
 

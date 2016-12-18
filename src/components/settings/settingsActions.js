@@ -1,15 +1,21 @@
 import * as types from '../../setup/actionTypes';
-import 'whatwg-fetch';
+import FB from '../../utils/firebase';
 
-export function getSettings() {
-  return function(dispatch, getState, api) {
-    return fetch(api+'getSettings')
-    .then(response => response.json())
-    .then(json => {
-      dispatch({
-        type: types.GET_SETTINGS_SUCCESS,
-        settings: json.data
-      });
+const SETTINGS_REF = FB('settings');
+
+export function startWatchingSettings() {
+  return dispatch => {
+    SETTINGS_REF.on('value', function (snap){
+      const settings = snap.val();
+      dispatch({type:types.SETTINGS_UPDATE,settings:(settings?settings:{})});
+    });
+  };
+}
+
+export function stopWatchingSettings() {
+  return dispatch => {
+    SETTINGS_REF.off('value', function (){
+      dispatch({type:types.SETTINGS_OFF});
     });
   };
 }
